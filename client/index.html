@@ -22,11 +22,8 @@
         </div>
         <div class="row searchContainer">
             <div class="col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2">
-                <div class="input-group">
-                    <input type="text" id="pac-input" class="form-control" placeholder="Enter address" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">Search</button>
-                    </span>
+                <div>
+                    <input type="text" id="pac-input" class="form-control" placeholder="Enter address and choose from autocomplete" />
                 </div>
             </div>
         </div>
@@ -34,16 +31,16 @@
     <div class="mapContainer">
         <div class="mainMap" id="map"></div>
     </div>
-    <div class="streetViewContainer">
-        <div class="streetMap mapOne"></div>
-        <div class="streetMap mapTwo"></div>
-        <div class="streetMap mapThree"></div>
-    </div>
     <div id="infowindow-content">
         <img src="" width="16" height="16" id="place-icon">
         <span id="place-name" class="title"></span>
         <br>
         <span id="place-address"></span>
+    </div>
+    <div class="streetViewContainer">
+        <div class="streetMap mapOne"></div>
+        <div class="streetMap mapTwo"></div>
+        <div class="streetMap mapThree"></div>
     </div>
 </body>
 
