@@ -5,7 +5,7 @@
  */
 function renderInitialMap() {
     let usa = { lat: 33.9584404, lng: -118.3941214 };
-    map = new google.maps.Map(document.getElementById("map"), {
+    let map = new google.maps.Map(document.getElementById("map"), {
         center: usa,
         zoom: 3
     });
@@ -32,7 +32,6 @@ function renderInitialMap() {
         map: map,
         anchorPoint: new google.maps.Point(0, -29)
     });
-
     autocomplete.addListener('place_changed', function () {
         infowindow.close();
         marker.setVisible(false);
@@ -52,7 +51,6 @@ function renderInitialMap() {
         }
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
-
         let address = '';
         if (place.address_components) {
             address = [
@@ -61,10 +59,7 @@ function renderInitialMap() {
                 (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
         }
-
-        infowindowContent.children['place-icon'].src = place.icon;
-        infowindowContent.children['place-name'].textContent = place.name;
-        infowindowContent.children['place-address'].textContent = address;
+        infowindow.setContent(address);
         infowindow.open(map, marker);
     });
 }
