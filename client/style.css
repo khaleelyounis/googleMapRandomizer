@@ -1,0 +1,44 @@
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: url(./images/setschedule.jpg);
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.landingTitle h2{
+    margin-top: 10vh;
+    font-family: 'Source Code Pro', monospace;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    text-align: center;
+    font-size: 56px;
+}
+.searchContainer {
+    margin-top: 8vh;
+}
+.mapContainer {
+    margin: 2% 5% 0 5%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    border: 1px solid black;
+    height: 65vh;
+    width: 90%;
+}
+
+#map {
+	height: 100%;
+	width: 100%;
+}
+.wrapper {
+	position: relative;
+    width: 50vw;
+    height: 50vh;
+    margin: 10px auto;
+}
