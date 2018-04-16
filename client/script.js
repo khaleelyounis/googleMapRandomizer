@@ -24,7 +24,7 @@ function initializeApp() {
     var thirdMap = $('#streetMap2');
     var fourthMap = $('#streetMap3');
     var mapModal = $('#mapModal');
-    var slider = $('#range')
+    var slider = document.getElementById('range');
 
     //Map Modal Click Handlers
     mainMap.click(function () {
@@ -106,7 +106,7 @@ function initializeApp() {
     });
 
     //function that allows for the control of the sliders;
-    slider.change(function () {
+    slider.oninput = function () {
         //check to see if modal is visible
         if (!$('#mapModal').is(':visible')) {
             return;
@@ -147,7 +147,7 @@ function initializeApp() {
                 $(".mapModalContainer").append(fourthMap);
             }
         }
-    });
+    };
 }
 
 /***************************************************************************
