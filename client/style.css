@@ -41,7 +41,6 @@ body {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    border: 1px solid blue;
     height: 28vh;
     width: 100vw;
 }
@@ -49,7 +48,6 @@ body {
 .streetMap {
     width: 33%;
     height: 100%;
-    border: 1px solid orange;
 }
 
 #infowindow-content .title {
@@ -73,10 +71,14 @@ body {
 
 @media only screen and (max-width: 375px) and (max-height : 667px) {
     .streetViewContainer {
-        height: 80vh;
+        height: 70vh;
     }
     .streetMap {
-        width: 100%;
+        margin: 2% auto;
+        width: 90%;
         height: 33%;
     }
 }
+/* #pano1, #pano2, #pano3 {
+    display: hidd
+} */
