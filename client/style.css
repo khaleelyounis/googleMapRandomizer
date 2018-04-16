@@ -6,9 +6,11 @@ html{
 }
 
 body {
+    height: 100%;
+    width: 100%;
     background: url(./images/setschedule.jpg);
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
 }
 
 .landingTitle h2{
@@ -81,6 +83,9 @@ body {
         margin: 2% auto;
         width: 90%;
         height: 33%;
+    }
+    body {
+        background-size: auto;
     }
 }
 
