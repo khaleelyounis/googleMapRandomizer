@@ -1,3 +1,11 @@
+/****************************************************/
+//PLEASE SEE NOTES ON STREET VIEW PANORAMA FURTHER DONE IN THE CODE - THANK YOU
+/****************************************************/
+
+/****************************************************/
+//Both Mobile and Desktop Responsive Minus Ipad Pro
+/****************************************************/
+
 //Global variables
 var map;
 var streetMap1;
@@ -10,48 +18,136 @@ $(document).ready(initializeApp);
 //function that runs after page has loaded
 function initializeApp() {
 
-    var mainMap = $('#map');
+    //declaring local variables to be used inside the function
+    var mainMap = $('.mainMap');
     var secondMap = $('#streetMap1');
     var thirdMap = $('#streetMap2');
     var fourthMap = $('#streetMap3');
     var mapModal = $('#mapModal');
-    var slider = document.getElementById("myRange");
+    var slider = $('#range')
 
     //Map Modal Click Handlers
-    mainMap.click(presentModalInformation);
+    mainMap.click(function () {
+        $(".mapModalContainer").empty();
+        $(".mapModalContainer").append(mainMap);
+        $('#mapModal').modal('show');
+    });
+    //Modal handler for when it closes
     mapModal.on('hide.bs.modal', function () {
         $('.mapContainer').append(mainMap);
+        secondMap.addClass('streetMap');
+        thirdMap.addClass('streetMap');
+        fourthMap.addClass('streetMap');
         secondMap.css('width', '33%');
         thirdMap.css('width', '33%');
         fourthMap.css('width', '33%');
+        //check to see if the screen size is iphone, and if it is set the correct settings
+        if (window.innerHeight === 667) {
+            secondMap.css({
+                'width': '90%',
+                'height': '33%',
+                'margin': '2% auto;'
+            });
+            thirdMap.css({
+                'width': '90%',
+                'height': '33%',
+                'margin': '2% auto;'
+            });
+            fourthMap.css({
+                'width': '90%',
+                'height': '33%',
+                'margin': '2% auto;'
+            });
+        }
         $('.streetViewContainer').append(secondMap);
         $('.streetViewContainer').append(thirdMap);
         $('.streetViewContainer').append(fourthMap);
+        mainMap.click(function () {
+            $(".mapModalContainer").empty();
+            $(".mapModalContainer").append(mainMap);
+            $('#mapModal').modal('show');
+        });
+    });
+
+    //function that changes the size of the street map back to original sizes
+    $(window).resize(function () {
+        //if the screen is not iphone size
+        if (window.innerHeight !== 667) {
+            secondMap.css({
+                'width': '33%',
+                'height': '100%',
+            });
+            thirdMap.css({
+                'width': '33%',
+                'height': '100%',
+            });
+            fourthMap.css({
+                'width': '33%',
+                'height': '100%',
+            });
+            //if the screen is iphone size
+        } else if (window.innerHeight === 667) {
+            secondMap.css({
+                'width': '90%',
+                'height': '33%',
+                'margin': '2% auto;'
+            });
+            thirdMap.css({
+                'width': '90%',
+                'height': '33%',
+                'margin': '2% auto;'
+            });
+            fourthMap.css({
+                'width': '90%',
+                'height': '33%',
+                'margin': '2% auto;'
+            });
+        }
     });
 
     //function that allows for the control of the sliders;
-    slider.oninput = function () {
+    slider.change(function () {
+        //check to see if modal is visible
         if (!$('#mapModal').is(':visible')) {
             return;
         } else {
-            if (this.value >= 1 && this.value <= 25) {
+            //this.value is equal to the place on the bar the slider currently is
+            if (this.value <= 25) {
                 $(".mapModalContainer").empty();
                 $(".mapModalContainer").append(mainMap);
             } else if (this.value >= 26 && this.value <= 50) {
-                $('.streetMap').css('width', '100%');
+                if (secondMap.hasClass('streetMap')) {
+                    secondMap.removeClass('streetMap');
+                }
+                secondMap.css({
+                    'width': '100%',
+                    'height': '100%'
+                })
                 $(".mapModalContainer").empty();
                 $(".mapModalContainer").append(secondMap);
             } else if (this.value >= 51 && this.value <= 75) {
-                $('.streetMap').css('width', '100%');
+                if (thirdMap.hasClass('streetMap')) {
+                    thirdMap.removeClass('streetMap');
+                }
+                thirdMap.css({
+                    'width': '100%',
+                    'height': '100%'
+                })
                 $(".mapModalContainer").empty();
                 $(".mapModalContainer").append(thirdMap);
             } else if (this.value >= 76 && this.value <= 100) {
-                $('.streetMap').css('width', '100%');
+                if (fourthMap.hasClass('streetMap')) {
+                    fourthMap.removeClass('streetMap');
+                }
+                fourthMap.css({
+                    'width': '100%',
+                    'height': '100%'
+                })
                 $(".mapModalContainer").empty();
                 $(".mapModalContainer").append(fourthMap);
             }
         }
-    }
+    });
 }
 
 /***************************************************************************
@@ -125,7 +221,8 @@ function renderInitialMap() {
         //Street Map #1 and it's marker.
         streetMap1 = new google.maps.Map(document.getElementById("streetMap1"), {
             center: usa,
-            zoom: 3
+            zoom: 3,
+            streetViewControl: true
         });
 
         //enable geocoder ( latlng to address translator )
@@ -169,12 +266,35 @@ function renderInitialMap() {
 
         //call function
         streetGeocodeLatLng1(streetGeocoder1, streetMap1, streetWindow1);
+
+        //setup panorama object for the streetview and then call it with specific map if possible
+        //Due to some locations not having a street view I prefer to present to you fully functioning code
+
+        // let streetViewService1 = new google.maps.StreetViewService();
+        // let STREETVIEW_MAX_DISTANCE = 100;
+        // streetViewService1.getPanoramaByLocation(streetLatLng1, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, StreetViewStatus) {
+        //     if (StreetViewStatus === google.maps.StreetViewStatus.OK) {
+        //         let panorama1 = new google.maps.StreetViewPanorama(
+        //             document.getElementById('streetMap1'), {
+        //                 position: streetLatLng1,
+        //                 pov: {
+        //                     heading: 34,
+        //                     pitch: 10
+        //                 }
+        //             });
+        //         streetMap1.setStreetView(panorama1);
+        //     } else {
+        //         return;
+        //     }
+        // });
+
         streetMap1.setZoom(17);
 
         //Street Map #2 and it's marker.
         streetMap2 = new google.maps.Map(document.getElementById("streetMap2"), {
             center: usa,
-            zoom: 3
+            zoom: 3,
+            streetViewControl: true
         });
 
         //enable geocoder ( latlng to address translator )
@@ -217,12 +337,34 @@ function renderInitialMap() {
 
         //call function
         streetGeocodeLatLng2(streetGeocoder2, streetMap2, streetWindow2);
+
+        //setup panorama object for the streetview and then call it with specific map if possible
+        //Due to some locations not having a street view I prefer to present to you fully functioning code
+
+        // let streetViewService2 = new google.maps.StreetViewService();
+        // streetViewService2.getPanoramaByLocation(streetLatLng2, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, StreetViewStatus) {
+        //     if (StreetViewStatus === google.maps.StreetViewStatus.OK) {
+        //         let panorama2 = new google.maps.StreetViewPanorama(
+        //             document.getElementById('streetMap2'), {
+        //                 position: streetLatLng2,
+        //                 pov: {
+        //                     heading: 34,
+        //                     pitch: 10
+        //                 }
+        //             });
+        //         streetMap1.setStreetView(panorama2);
+        //     } else {
+        //         return;
+        //     }
+        // });
+
         streetMap2.setZoom(17);
 
         //Street Map #3 and it's marker.
         streetMap3 = new google.maps.Map(document.getElementById("streetMap3"), {
             center: usa,
-            zoom: 3
+            zoom: 3,
+            streetViewControl: true
         });
 
         //enable geocoder ( latlng to address translator )
@@ -264,7 +406,28 @@ function renderInitialMap() {
 
         //call function
         streetGeocodeLatLng3(streetGeocoder3, streetMap3, streetWindow3);
-        streetMap2.setZoom(17);
+
+        //setup panorama object for the streetview and then call it with specific map if possible
+        //Due to some locations not having a street view I prefer to present to you fully functioning code
+
+        // let streetViewService3 = new google.maps.StreetViewService();
+        // streetViewService3.getPanoramaByLocation(streetLatLng3, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, StreetViewStatus) {
+        //     if (StreetViewStatus === google.maps.StreetViewStatus.OK) {
+        //         let panorama3 = new google.maps.StreetViewPanorama(
+        //             document.getElementById('streetMap3'), {
+        //                 position: streetLatLng3,
+        //                 pov: {
+        //                     heading: 34,
+        //                     pitch: 10
+        //                 }
+        //             });
+        //         streetMap1.setStreetView(panorama3);
+        //     } else {
+        //         return;
+        //     }
+        // });
+
+        streetMap3.setZoom(17);
 
         //Distance Matrix Calculation
         let directionsService = new google.maps.DirectionsService();
@@ -324,10 +487,6 @@ function renderInitialMap() {
     });
 }
 
-//Modal function for when the map is clicked
-function presentModalInformation() {
-    $(".mapModalContainer").empty();
-    var modalMap = $('#map').clone();
-    $(".mapModalContainer").append(modalMap);
-    $('#mapModal').modal('show');
-}
+/****************************************************/
+/* Please let me know if I can answer any questions. Feel free to email me @khaleelyounis1@gmail.com
+/****************************************************/
