@@ -1,6 +1,6 @@
 # Google Map Randomizer
 
-An application build around Google Maps API, that allows you to autocomplete a location and find 3 seperate locations 50-70 miles way from your target. 
+An application build around Google Maps API. After autocompleting your search location, it will prompt you with 3 separate locations 50-70 miles away and the fasest route through all four points. 
 
 
 ![Landing Page](./client/images/2.png) | ![Search Result](./client/images/1.png)
