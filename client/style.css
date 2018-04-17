@@ -89,6 +89,76 @@ body {
     }
 }
 
+/* Media Query for Iphone 6/7/8 plus */
+
+@media only screen and (max-width: 414px) and (max-height : 736px) {
+    .streetViewContainer {
+        height: 60vh;
+    }
+    .streetMap {
+        margin: 2% auto;
+        width: 90%;
+        height: 33%;
+    }
+    body {
+        background-size: auto;
+    }
+}
+
+/* Media Query for Iphone X */
+
+@media only screen and (max-width: 375px) and (max-height : 812px) {
+    .streetViewContainer {
+        height: 50vh;
+    }
+    .streetMap {
+        margin: 2% auto;
+        width: 90%;
+        height: 33%;
+    }
+    body {
+        background-size: auto;
+    }
+}
+
+/* Media Query for Ipad */
+
+@media only screen and (max-width: 768px) and (max-height : 1024px) {
+    .mapContainer {
+        height: 25vh;
+    }
+    .streetViewContainer {
+        height: 40vh;
+    }
+    .streetMap {
+        margin: 2% auto;
+        width: 90%;
+        height: 33%;
+    }
+    body {
+        background-size: auto;
+    }
+}
+
+/* Media Query for Ipad Pro */
+
+@media only screen and (max-width: 1024px) and (max-height : 1366px) {
+    .mapContainer {
+        height: 25vh;
+    }
+    .streetViewContainer {
+        height: 40vh;
+    }
+    .streetMap {
+        margin: 2% auto;
+        width: 90%;
+        height: 33%;
+    }
+    body {
+        background-size: cover;
+    }
+}
+
 /* Modal Content */
 
 .modal {
@@ -107,6 +177,10 @@ body {
 .mapModalContainer {
     height: 80vh;
     margin: auto;
+}
+
+.modal-dialog > .modal-content > .modal-header {
+    border: none;
 }
 
 .modal_content {
